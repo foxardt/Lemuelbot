@@ -13,13 +13,4 @@ const client = new Client({
 
 eventHandler(client);
 
-/*client.on('guildCreate', (guild) => {
-  try {
-    if (guild.systemChannel)
-      guild.systemChannel.send(
-        'Привет Doctor, Ursus Student Self-Governing Group Istina reporting in. If you need any help call me with /help'
-      );
-  } catch (error) {}
-});*/
-
 client.login(process.env.TOKEN);
