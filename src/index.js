@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Client, IntentsBitField, EmbedBuilder } = require('discord.js');
 const eventHandler = require('./handlers/eventHandler');
 const { Player } = require('discord-player');
+const mongoose = require('mongoose');
 
 const client = new Client({
   intents: [
@@ -13,6 +14,15 @@ const client = new Client({
   ],
 });
 
+(async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log('Connected to DB');
+  } catch (error) {
+    console.log(error);
+  }
+})();
+
 eventHandler(client);
 
 client.player = new Player(client, {
@@ -22,7 +32,7 @@ client.player = new Player(client, {
   },
 });
 
-client.player.on('trackStart', (queue, track) => {
+client.player.events.on('trackStart', (queue, track) => {
   if (queue.metadata.channel)
     queue.metadata.channel.send({
       embeds: [

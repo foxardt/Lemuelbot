@@ -20,11 +20,11 @@ module.exports = {
     if (!interaction.member.voice.channel)
       return interaction.reply({
         content:
-          'Извини Doctor, You need to be in a voice channel to run this command.',
+          'Sorry Leader, You need to be in a voice channel to run this command.',
         ephemeral: true,
       });
 
-    const queue = await client.player.createQueue(interaction.guild, {
+    const queue = await client.player.nodes.create(interaction.guild, {
       metadata: {
         channel: interaction.channel,
       },
@@ -42,7 +42,7 @@ module.exports = {
 
     if (result.tracks.length === 0)
       return interaction.reply({
-        content: 'Извини Doctor, I didn\t get any result.',
+        content: 'Sorry Leader, I didn\t get any result.',
         ephemeral: true,
       });
 
@@ -55,7 +55,7 @@ module.exports = {
       .setThumbnail(song.thumbnail)
       .setFooter({ text: `Duration: ${song.duration}` });
 
-    if (!queue.playing) await queue.play();
+    if (!queue.playing) await queue.node.play();
 
     await interaction.reply({
       embeds: [embed],

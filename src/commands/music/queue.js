@@ -15,10 +15,10 @@ module.exports = {
   // deleted: Boolean,
 
   callback: async (client, interaction) => {
-    const queue = client.player.getQueue(interaction.guildId);
+    const queue = client.player.nodes.get(interaction.guildId);
     if (!queue || !queue.playing)
       return interaction.reply({
-        content: 'Извини Doctor, there are no songs in the queue.',
+        content: 'Sorry Leader, there are no songs in the queue.',
         ephemeral: true,
       });
 
@@ -27,7 +27,7 @@ module.exports = {
 
     if (page > totalPages)
       return interaction.reply({
-        content: `Извини Doctor, Invalid page. There are only ${totalPages} of songs`,
+        content: `Sorry Leader, Invalid page. There are only ${totalPages} of songs`,
         ephemeral: true,
       });
 

@@ -13,8 +13,8 @@ module.exports = {
     const localCommands = getLocalCommands();
 
     let embed = new EmbedBuilder()
-      .setTitle('Istina command list')
-      .setDescription("This is the list of Istina's commands:")
+      .setTitle('Lemuel command list')
+      .setDescription("This is the list of Lemuel's commands:")
       .setColor(0x95bcdd);
     for (const localCommand of localCommands) {
       if (!localCommand.deleted)
@@ -23,6 +23,6 @@ module.exports = {
           value: localCommand.description,
         });
     }
-    interaction.reply({ embeds: [embed] });
+    interaction.reply({ embeds: [embed], ephemeral: true });
   },
 };

@@ -17,7 +17,7 @@ module.exports = async (client, interaction) => {
       if (!devs.includes(interaction.member.id)) {
         interaction.reply({
           content:
-            'Извини Doctor, only developers are allowed to run this command.',
+            'Sorry Leader, only developers are allowed to run this command.',
           ephemeral: true,
         });
         return;
@@ -27,7 +27,7 @@ module.exports = async (client, interaction) => {
     if (commandObject.testOnly) {
       if (!(interaction.guild.id === testServer)) {
         interaction.reply({
-          content: 'Извини Doctor, This command cannot be ran here.',
+          content: 'Sorry Leader, This command cannot be ran here.',
           ephemeral: true,
         });
         return;
@@ -39,7 +39,7 @@ module.exports = async (client, interaction) => {
         if (!interaction.user.permissions.has(permission)) {
           interaction.reply({
             content:
-              "Извини Doctor, You don't have enough permissions to run this command.",
+              "Sorry Leader, You don't have enough permissions to run this command.",
             ephemeral: true,
           });
           return;
@@ -54,7 +54,7 @@ module.exports = async (client, interaction) => {
         if (!bot.permissions.has(permission)) {
           interaction.reply({
             content:
-              "Извини Doctor, I don't have enough permissions to run this command.",
+              "Sorry Leader, I don't have enough permissions to run this command.",
             ephemeral: true,
           });
           return;

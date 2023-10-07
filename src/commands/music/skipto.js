@@ -17,15 +17,15 @@ module.exports = {
   // deleted: Boolean,
 
   callback: async (client, interaction) => {
-    const queue = client.player.getQueue(interaction.guildId);
+    const queue = client.player.nodes.get(interaction.guildId);
     const trackNum = interaction.options.getNumber('tracknumber');
     if (trackNum > queue.tracks.length)
       return interaction.reply({
-        content: 'Извини Doctor, invalid track number.',
+        content: 'Sorry Leader, invalid track number.',
         ephemeral: true,
       });
 
-    queue.skipTo(trackNum - 1);
+    queue.node.skipTo(trackNum - 1);
 
     interaction.reply({
       content: `Skipped ahead to track number${trackNum}`,

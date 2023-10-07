@@ -7,18 +7,18 @@ module.exports = {
   // deleted: Boolean,
 
   callback: async (client, interaction) => {
-    const queue = client.player.getQueue(interaction.guildId);
+    const queue = client.player.nodes.get(interaction.guildId);
 
     if (!queue)
       return interaction.reply({
-        content: 'Извини Doctor, there are no songs in the queue.',
+        content: 'Sorry Leader, there are no songs in the queue.',
         ephemeral: true,
       });
 
-    queue.destroy();
+    queue.delete();
 
     await interaction.reply({
-      content: 'пока Doctor!',
+      content: 'пока Leader!',
     });
   },
 };
